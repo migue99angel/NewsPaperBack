@@ -1,10 +1,14 @@
 const router = require('express').Router();
+const mongoose = require('mongoose');
+
 const NewspaperEntry = mongoose.model('NewspaperEntry');
 
-router.get('titles', function(req, res, next){
-    NewspaperEntry.findById(req.payload.id).then(function(entry){
-        if(!entry){ return res.sendStatus(404); }
-
-        return res.json({'entry': entry})
-    })
+router.get('/', function(req, res){
+    NewspaperEntry.find({})
+        .then(function(entry){
+            console.log(entry);
+            return res.json({'entry': entry})
+        })
 })
+
+module.exports = router;
