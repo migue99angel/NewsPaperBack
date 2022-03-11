@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 // connect to MongoDB
 mongoose.connect('mongodb://localhost/Celtiberian')
@@ -10,6 +11,9 @@ require('./models/newspapers');
 
 const app = express()
 const port = 3000
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(require('./routes'));
 
