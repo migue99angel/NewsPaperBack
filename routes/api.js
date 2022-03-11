@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
+const Joi = require('joi');
 
 const NewspaperEntry = mongoose.model('NewspaperEntry');
 
@@ -12,26 +13,29 @@ router.get('/', function(req, res, next){
     })
 })
 
-// Endpoint to find a entry with the id
+// Endpoint to find entries in an id list
 router.get('/:id', function(req, res, next){
-    NewspaperEntry.findOne({id: req.params.id}, function(err, entry){
+    idList = req.params.id.split(',')
+    NewspaperEntry.find({ id : { $in : idList } }, function(err, entry){
         if (err) return next(err);
         
         res.json(entry);
     })
 })
 
-// Endpoint to create an entry
-router.post('/', function(req, res, next){
-    NewspaperEntry.create(req.body, function(err, entry){
-        if (err) return next(err);
+// Endpoint to create an entry list
+router.post('/', newspaperEntryListSchema, function(req, res, next){
+    req.body.forEach(element => {
+        NewspaperEntry.create(element, function(err, entry){
+            if (err) return next(err);
+        })
+    });
 
-        res.json(entry);
-    })
+    return res.json(req.body);
 })
 
 // Endpoint to update an entry identified by an id
-router.put('/:id', function(req, res, next){
+router.put('/:id', newspaperEntrySchema, function(req, res, next){
     NewspaperEntry.findOneAndUpdate({id: req.params.id}, req.body, {new: true},function(err, entry){
         if(err) return next(err);
 
@@ -47,5 +51,44 @@ router.delete('/:id', function(req, res, next){
         res.json(entry);
     })
 })
+
+const entrySchema = Joi.object({
+    id: Joi.number().required(),
+    title: Joi.string().required(),
+    image: Joi.string().required(),
+    link: Joi.string().required(),
+    abstract: Joi.string().required(),
+    publisher: {
+        id: Joi.number().required(),
+        name: Joi.string().required(),
+        joined_date: Joi.date().required()
+    },
+    languages: Joi.array()
+});
+
+function newspaperEntrySchema(req, res, next){
+    validateRequest(req, next, entrySchema);
+}
+
+function newspaperEntryListSchema(req, res, next){
+    const entryListSchema = Joi.array().items(entrySchema);
+
+    validateRequest(req, next, entryListSchema);
+}
+
+function validateRequest(req, next, schema) {
+    const options = {
+        abortEarly: false,
+        allowUnknown: true, 
+        stripUnknown: true 
+    };
+    const { error, value } = schema.validate(req.body, options);
+    if (error) {
+        next(`Validation error: ${error.details.map(x => x.message).join(', ')}`);
+    } else {
+        req.body = value;
+        next();
+    }
+}
 
 module.exports = router;
