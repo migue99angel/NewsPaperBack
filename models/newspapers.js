@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 
 var NewspaperEntrySchema = new mongoose.Schema({
-    _id: { type: String },
     id: { type: Number, default: '', unique: true },
 	title: { type: String, default: ''},
 	image: { type: String, default: ''},
@@ -12,8 +11,7 @@ var NewspaperEntrySchema = new mongoose.Schema({
         name: { type: String, default: ''},
         joined_date: { type: Date, default: '' }
 	},
-	languages: { type: [String], default: []},
-	creation_date: { type: Date, default: '' }
+	languages: { type: [String], default: []}
 })
 
 mongoose.model('NewspaperEntry', NewspaperEntrySchema, 'NewspaperEntry');
