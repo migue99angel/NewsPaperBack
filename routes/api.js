@@ -5,12 +5,31 @@ const Joi = require('joi');
 const NewspaperEntry = mongoose.model('NewspaperEntry');
 
 // Endpoint to list every entry in the database
-router.get('/', function(req, res, next){
+router.get('/list', function(req, res, next){
     NewspaperEntry.find(function(err, entries){
         if(err) return next(err);
 
         res.json(entries);
     })
+})
+
+// Endpoint to search some text in the database
+router.get('/', function(req, res, next){
+    const terms = req.query.terms
+    if(terms != undefined){
+        NewspaperEntry.find({'$or': [
+            { 'title' : { '$regex' : terms, '$options' : 'i' } } ,
+            { 'abstract' : { '$regex' : terms, '$options' : 'i' } } 
+        ]}
+            ,function(err, entries){
+            if(err) return next(err);
+    
+            res.json(entries);
+        })
+    }else{
+        res.json([])
+    }
+
 })
 
 // Endpoint to find entries in an id list
