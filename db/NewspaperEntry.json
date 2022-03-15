@@ -1,0 +1,59 @@
+[{
+  "_id": {
+    "$oid": "6230cb8a7f52ebf1c0552fac"
+  },
+  "id": 2,
+  "title": "Michigan City dispatch.",
+  "image": "public/image/michigan.png",
+  "link": "https://www.britannica.com/place/Michigan",
+  "abstract": "Michigan, constituent state of the United States of America. Although by the size of its land Michigan ranks only 22nd of the 50 states, the inclusion of the Great Lakes waters over which it has jurisdiction increases its area considerably, placing it 11th in terms of total area. The capital is Lansing, in south-central Michigan. The state's name is derived from michi-gama, an Ojibwa (Chippewa) word meaning 'large lake.'",
+  "publisher": {
+    "id": 7,
+    "name": "Rob Jr.",
+    "joined_date": "2015-07-06T11:22:37Z"
+  },
+  "languages": [
+    "en",
+    "es",
+    "fr"
+  ],
+  "creation_date": "2019-08-05T12:12:44Z"
+},{
+  "_id": {
+    "$oid": "6230cbaf7f52ebf1c0552fb2"
+  },
+  "id": 1,
+  "title": "Berkeley vs. Berkeley Is a Fight Over the California Dream",
+  "image": "public/image/michigan.png",
+  "link": "https://www.nytimes.com/2022/03/10/us/uc-berkeley-student-housing.html",
+  "abstract": "The state’s complex environmental laws are being weaponized in lawsuits against the University of California, Berkeley, which is under pressure to admit more and more students.",
+  "publisher": {
+    "id": 7,
+    "name": "Rob Jr.",
+    "joined_date": "2015-07-06T11:22:37Z"
+  },
+  "languages": [
+    "en"
+  ],
+  "creation_date": "2022-03-05T12:12:44Z"
+},{
+  "_id": {
+    "$oid": "622b7a1069c41b1bae0a1b0f"
+  },
+  "id": 3,
+  "title": "Biden announces new penalties for Russia",
+  "image": "public/image/michigan.png",
+  "link": "https://www.washingtonpost.com/business/2022/03/11/biden-russia-trade-relations-eu/",
+  "abstract": "The president calls the actions a 'crushing blow' to the Russian economy, which already has been pummeled by financial sanctions",
+  "publisher": {
+    "id": 3,
+    "name": "David J. Lynch",
+    "joined_date": {
+      "$date": "2022-01-06T11:22:37Z"
+    }
+  },
+  "languages": [
+    "en",
+    "fr"
+  ]
+}]

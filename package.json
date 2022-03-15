@@ -1,12 +1,13 @@
 {
-  "name": "celtiberian",
+  "name": "newspaperback",
   "version": "1.0.0",
-  "description": "technical test",
+  "description": "NodeJS, ExpressJS and MongoDB RESTful API",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .  --ext .js",
-    "lint-fix": "eslint --fix .  --ext .js"
+    "lint-fix": "eslint --fix .  --ext .js",
+    "start": "nodemon api.js"
   },
   "author": "Miguel Ángel Posadas Arráez",
   "license": "ISC",
