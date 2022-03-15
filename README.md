@@ -1,6 +1,6 @@
 # NewspaperBack
 
-NodeJS, ExpressJS and MongoDB RESTful API. You can find the front-end associate [here](https://github.com/migue99angel/NewspaperFront)
+NodeJS, ExpressJS and MongoDB RESTful API. You can find the front-end associated [here](https://github.com/migue99angel/NewspaperFront)
 
 Author: Miguel Ángel Posadas Arráez
 
