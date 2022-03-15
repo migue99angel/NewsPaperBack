@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 // connect to MongoDB
-mongoose.connect('mongodb://localhost/Celtiberian')
+mongoose.connect('mongodb://localhost/Newspaper')
   .then(() => console.log('connection succesful'))
   .catch((err) => console.error(err));
 
